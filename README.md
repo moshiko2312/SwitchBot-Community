@@ -164,6 +164,12 @@ triggers:
   - entity_id: sensor.switchbot_keypad_bridge_unlock_face_count
     trigger: state
 conditions:
+  - condition: template
+    value_template: |
+      {{ trigger.from_state is not none
+         and trigger.from_state.state not in ['unknown', 'unavailable']
+         and trigger.to_state.state not in ['unknown', 'unavailable']
+         and trigger.from_state.state != trigger.to_state.state }}
   - condition: state
     entity_id: sensor.switchbot_keypad_bridge_last_unlock_method
     state: face
@@ -195,6 +201,12 @@ triggers:
   - entity_id: sensor.switchbot_keypad_bridge_unlock_fingerprint_count
     trigger: state
 conditions:
+  - condition: template
+    value_template: |
+      {{ trigger.from_state is not none
+         and trigger.from_state.state not in ['unknown', 'unavailable']
+         and trigger.to_state.state not in ['unknown', 'unavailable']
+         and trigger.from_state.state != trigger.to_state.state }}
   - condition: state
     entity_id: sensor.switchbot_keypad_bridge_last_unlock_method
     state: fingerprint
@@ -226,6 +238,12 @@ triggers:
   - entity_id: sensor.switchbot_keypad_bridge_unlock_pin_count
     trigger: state
 conditions:
+  - condition: template
+    value_template: |
+      {{ trigger.from_state is not none
+         and trigger.from_state.state not in ['unknown', 'unavailable']
+         and trigger.to_state.state not in ['unknown', 'unavailable']
+         and trigger.from_state.state != trigger.to_state.state }}
   - condition: state
     entity_id: sensor.switchbot_keypad_bridge_last_unlock_method
     state: pin
